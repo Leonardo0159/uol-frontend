@@ -114,7 +114,7 @@ export default function ListProdutos() {
                             <tr key={dado.id} className="border-b">
                                 <td className="p-4">{dado.nome}</td>
                                 <td className="p-4">{dado.descricao}</td>
-                                <td className="p-4">{dado.preco}</td>
+                                <td className="p-4">{'R$ '+dado.preco.toFixed(2)}</td>
                                 <td className="p-4">{dado.quantidade}</td>
                                 <td className="p-4">{dado.categoria}</td>
                                 <td className="p-4">{dado.fornecedor.nome}</td>
@@ -138,7 +138,7 @@ export default function ListProdutos() {
                             <div className="font-bold mt-2">Descrição</div>
                             <div>{dado.descricao}</div>
                             <div className="font-bold mt-2">Preço</div>
-                            <div>{dado.preco}</div>
+                            <div>{'R$ '+dado.preco.toFixed(2)}</div>
                             <div className="font-bold mt-2">Quantidade</div>
                             <div>{dado.quantidade}</div>
                             <div className="font-bold mt-2">Categoria</div>
