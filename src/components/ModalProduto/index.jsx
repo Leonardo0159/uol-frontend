@@ -21,7 +21,7 @@ export default function ModalProduto({ isOpen, onClose, onSave, onDelete, produt
     useEffect(() => {
         const fetchFornecedores = async () => {
             try {
-                const response = await axios.get('http://localhost:3333/fornecedores');
+                const response = await axios.get('https://uol-backend.vercel.app/fornecedores');
                 setFornecedores(response.data);
             } catch (error) {
                 console.error("Erro ao buscar fornecedores:", error);

@@ -16,11 +16,11 @@ export default function ListFornecedores() {
     try {
       let response;
       if (search) {
-        response = await axios.get(`http://localhost:3333/fornecedores/nome/${search}`);
+        response = await axios.get(`https://uol-backend.vercel.app/fornecedores/nome/${search}`);
         setDados(response.data);
         setTotalFornecedores(response.data.length);
       } else {
-        response = await axios.get(`http://localhost:3333/fornecedores/paginados?page=${page}`);
+        response = await axios.get(`https://uol-backend.vercel.app/fornecedores/paginados?page=${page}`);
         setDados(response.data.fornecedores);
         setTotalFornecedores(response.data.totalFornecedores);
       }
@@ -43,9 +43,9 @@ export default function ListFornecedores() {
   const handleSave = async (fornecedorData) => {
     try {
       if (currentFornecedor) {
-        await axios.put(`http://localhost:3333/fornecedores/${currentFornecedor.id}`, fornecedorData);
+        await axios.put(`https://uol-backend.vercel.app/fornecedores/${currentFornecedor.id}`, fornecedorData);
       } else {
-        await axios.post('http://localhost:3333/fornecedores', fornecedorData);
+        await axios.post('https://uol-backend.vercel.app/fornecedores', fornecedorData);
       }
       setModalOpen(false);
       setCurrentFornecedor(null);
@@ -57,7 +57,7 @@ export default function ListFornecedores() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3333/fornecedores/${id}`);
+      await axios.delete(`https://uol-backend.vercel.app/fornecedores/${id}`);
       setModalOpen(false);
       setCurrentFornecedor(null);
       fetchData(); // Certifique-se de chamar fetchData após a exclusão

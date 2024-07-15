@@ -16,11 +16,11 @@ export default function ListProdutos() {
         try {
             let response;
             if (search) {
-                response = await axios.get(`http://localhost:3333/produtos/nome/${search}`);
+                response = await axios.get(`https://uol-backend.vercel.app/produtos/nome/${search}`);
                 setDados(response.data);
                 setTotalProdutos(response.data.length);
             } else {
-                response = await axios.get(`http://localhost:3333/produtos/paginados?page=${page}`);
+                response = await axios.get(`https://uol-backend.vercel.app/produtos/paginados?page=${page}`);
                 setDados(response.data.produtos);
                 setTotalProdutos(response.data.totalProducts);
             }
@@ -43,9 +43,9 @@ export default function ListProdutos() {
     const handleSave = async (produtoData) => {
         try {
             if (currentProduto) {
-                await axios.put(`http://localhost:3333/produtos/${currentProduto.id}`, produtoData);
+                await axios.put(`https://uol-backend.vercel.app/produtos/${currentProduto.id}`, produtoData);
             } else {
-                await axios.post('http://localhost:3333/produtos', produtoData);
+                await axios.post('https://uol-backend.vercel.app/produtos', produtoData);
             }
             setModalOpen(false);
             setCurrentProduto(null);
@@ -57,7 +57,7 @@ export default function ListProdutos() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3333/produtos/${id}`);
+            await axios.delete(`https://uol-backend.vercel.app/produtos/${id}`);
             setModalOpen(false);
             setCurrentProduto(null);
             fetchData();
@@ -87,7 +87,7 @@ export default function ListProdutos() {
                     type="text"
                     value={search}
                     onChange={handleSearchChange}
-                    placeholder="Pesquisar Produto"
+                    placeholder="Pesquisar Produto por Nome, Categoria e Forncedor"
                     className="px-4 py-2 border rounded w-full"
                 />
                 <button className='bg-green-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-green-500'
