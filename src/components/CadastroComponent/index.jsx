@@ -27,11 +27,12 @@ export const CadastroComponent = () => {
                 body: JSON.stringify({ nome, email, senha }),
             });
 
-            if (!response.ok) {
-                throw new Error('Erro ao cadastrar');
+            const data = await response.json();
+
+            if (data.error) {
+                throw new Error(data.error);
             }
 
-            const data = await response.json();
             alert('Cadastro realizado com sucesso');
             Router.push('/login');
         } catch (error) {
