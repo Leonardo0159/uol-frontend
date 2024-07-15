@@ -104,14 +104,15 @@ export default function ModalFornecedor({ isOpen, onClose, onSave, onDelete, for
                     </select>
                     {codigoPaisError && <p className="text-red-500 text-base">{codigoPaisError}</p>}
                 </div>
-                <div className="flex justify-between items-center mb-4">
-                    <button
-                        className="bg-red-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-red-500"
-                        onClick={() => setShowDeleteConfirm(true)}
-                        disabled={!fornecedor}
-                    >
-                        Deletar
-                    </button>
+                <div className="flex justify-end items-center mb-4 gap-4">
+                    {fornecedor && (
+                        <button
+                            className="bg-red-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-red-500"
+                            onClick={() => setShowDeleteConfirm(true)}
+                        >
+                            Deletar
+                        </button>
+                    )}
                     <div className="space-x-4">
                         <button className='bg-green-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-green-500'
                             onClick={handleSave}>

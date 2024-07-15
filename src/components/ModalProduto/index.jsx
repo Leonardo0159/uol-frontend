@@ -184,14 +184,15 @@ export default function ModalProduto({ isOpen, onClose, onSave, onDelete, produt
                     </select>
                     {fornecedorIdError && <p className="text-red-500 text-base">{fornecedorIdError}</p>}
                 </div>
-                <div className="flex justify-between items-center mb-4">
-                    <button
-                        className="bg-red-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-red-500"
-                        onClick={() => setShowDeleteConfirm(true)}
-                        disabled={!produto}
-                    >
-                        Deletar
-                    </button>
+                <div className="flex justify-end items-center mb-4 gap-4">
+                    {produto && (
+                        <button
+                            className="bg-red-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-red-500"
+                            onClick={() => setShowDeleteConfirm(true)}
+                        >
+                            Deletar
+                        </button>
+                    )}
                     <div className="space-x-4">
                         <button
                             className="bg-green-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-green-500"
