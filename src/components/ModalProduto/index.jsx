@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaX } from "react-icons/fa6";
-import axios from 'axios';
+import api from '../../config/axiosConfig';
 
 export default function ModalProduto({ isOpen, onClose, onSave, onDelete, produto }) {
     const [nome, setNome] = useState(produto?.nome || '');
@@ -21,7 +21,7 @@ export default function ModalProduto({ isOpen, onClose, onSave, onDelete, produt
     useEffect(() => {
         const fetchFornecedores = async () => {
             try {
-                const response = await axios.get('https://uol-backend.vercel.app/fornecedores');
+                const response = await api.get('/fornecedores');
                 setFornecedores(response.data);
             } catch (error) {
                 console.error("Erro ao buscar fornecedores:", error);

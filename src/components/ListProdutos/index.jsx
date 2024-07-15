@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../../config/axiosConfig';
 import { Button } from '../Button';
 import ModalProduto from '../ModalProduto';
 
@@ -16,11 +16,11 @@ export default function ListProdutos() {
         try {
             let response;
             if (search) {
-                response = await axios.get(`https://uol-backend.vercel.app/produtos/nome/${search}`);
+                response = await api.get(`/produtos/nome/${search}`);
                 setDados(response.data);
                 setTotalProdutos(response.data.length);
             } else {
-                response = await axios.get(`https://uol-backend.vercel.app/produtos/paginados?page=${page}`);
+                response = await api.get(`/produtos/paginados?page=${page}`);
                 setDados(response.data.produtos);
                 setTotalProdutos(response.data.totalProducts);
             }
@@ -43,9 +43,9 @@ export default function ListProdutos() {
     const handleSave = async (produtoData) => {
         try {
             if (currentProduto) {
-                await axios.put(`https://uol-backend.vercel.app/produtos/${currentProduto.id}`, produtoData);
+                await api.put(`/produtos/${currentProduto.id}`, produtoData);
             } else {
-                await axios.post('https://uol-backend.vercel.app/produtos', produtoData);
+                await api.post('/produtos', produtoData);
             }
             setModalOpen(false);
             setCurrentProduto(null);
@@ -57,7 +57,7 @@ export default function ListProdutos() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`https://uol-backend.vercel.app/produtos/${id}`);
+            await api.delete(`/produtos/${id}`);
             setModalOpen(false);
             setCurrentProduto(null);
             fetchData();
@@ -87,7 +87,7 @@ export default function ListProdutos() {
                     type="text"
                     value={search}
                     onChange={handleSearchChange}
-                    placeholder="Pesquisar Produto por Nome, Categoria e Forncedor"
+                    placeholder="Pesquisar Produto por Nome, Categoria e Fornecedor"
                     className="px-4 py-2 border rounded w-full"
                 />
                 <button className='bg-green-600 rounded-radius-300 p-squish-sm text-base text-neutral-lightest font-regular hover:bg-green-500'
@@ -114,7 +114,7 @@ export default function ListProdutos() {
                             <tr key={dado.id} className="border-b">
                                 <td className="p-4">{dado.nome}</td>
                                 <td className="p-4">{dado.descricao}</td>
-                                <td className="p-4">{'R$ '+dado.preco.toFixed(2)}</td>
+                                <td className="p-4">{'R$ ' + dado.preco.toFixed(2)}</td>
                                 <td className="p-4">{dado.quantidade}</td>
                                 <td className="p-4">{dado.categoria}</td>
                                 <td className="p-4">{dado.fornecedor.nome}</td>
@@ -138,7 +138,7 @@ export default function ListProdutos() {
                             <div className="font-bold mt-2">Descrição</div>
                             <div>{dado.descricao}</div>
                             <div className="font-bold mt-2">Preço</div>
-                            <div>{'R$ '+dado.preco.toFixed(2)}</div>
+                            <div>{'R$ ' + dado.preco.toFixed(2)}</div>
                             <div className="font-bold mt-2">Quantidade</div>
                             <div>{dado.quantidade}</div>
                             <div className="font-bold mt-2">Categoria</div>
